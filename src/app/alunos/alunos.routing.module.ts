@@ -17,7 +17,7 @@ const alunosRoutes = [
 //Utilizando rotas filhas
 // inserir router outlet no component
 const alunosRoutes = [
-    {path: 'alunos', component: AlunosComponent, children : [
+    {path: '', component: AlunosComponent, children : [
         {path: 'novo', component: AlunoFormComponent},
         {path: ':id', component: AlunoDetalheComponent},
         {path: ':id/editar', component: AlunoFormComponent},
