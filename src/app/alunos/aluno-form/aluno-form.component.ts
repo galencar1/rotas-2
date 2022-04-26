@@ -12,7 +12,7 @@ export class AlunoFormComponent implements OnInit, OnDestroy {
 
   aluno: any = {};
   inscricao !: Subscription;
-  private formMudou: boolean = false;
+  formMudou: boolean = false;
 
   constructor(
     private route: ActivatedRoute,

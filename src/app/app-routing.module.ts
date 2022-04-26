@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 //import { ModuleWithProviders } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AlunosGuard } from './guards/alunos.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { CursosGuard } from './guards/cursos.guard';
 //import { RouterModule, Routes } from '@angular/router';
 
 //const routes: Routes = [];
@@ -15,11 +17,17 @@ import { LoginComponent } from "./login/login.component";
 
 const appRoutes: Routes = [
     { path: 'cursos',loadChildren: () => import ('src/app/cursos/cursos.module')
-    .then(c => c.CursosModule),canActivate: [AuthGuard]},
+    .then(c => c.CursosModule),
+    canActivate: [AuthGuard],
+    canActivateChild: [CursosGuard]
+  },
     
     
     {path: 'alunos', loadChildren: () => import('src/app/alunos/alunos.module')
-    .then(a => a.AlunosModule), canActivate: [AuthGuard]},
+    .then(a => a.AlunosModule),
+    canActivate: [AuthGuard]//,
+    //canActivateChild: [AlunosGuard],
+  },
     
     
     //{path: 'cursos', component: CursosComponent},

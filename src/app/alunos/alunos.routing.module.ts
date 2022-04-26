@@ -1,5 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { AlunosDeactivateGuard } from "../guards/alunos.deactivated.guard";
+import { AlunosGuard } from "../guards/alunos.guard";
 import { AlunoDetalheComponent } from "./aluno-detalhe/aluno-detalhe.component";
 import { AlunoFormComponent } from "./aluno-form/aluno-form.component";
 
@@ -17,10 +19,14 @@ const alunosRoutes = [
 //Utilizando rotas filhas
 // inserir router outlet no component
 const alunosRoutes = [
-    {path: '', component: AlunosComponent, children : [
+    {path: '', component: AlunosComponent,
+    canActivateChild: [AlunosGuard  ],
+    children : [
         {path: 'novo', component: AlunoFormComponent},
         {path: ':id', component: AlunoDetalheComponent},
-        {path: ':id/editar', component: AlunoFormComponent},
+        {path: ':id/editar', component: AlunoFormComponent,
+            canDeactivate: [AlunosDeactivateGuard]
+        },
     ]}
 ];
 
