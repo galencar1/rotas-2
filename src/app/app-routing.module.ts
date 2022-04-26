@@ -14,6 +14,7 @@ import { CursosGuard } from './guards/cursos.guard';
 //import { CursosComponent } from "./cursos/cursos.component";
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./login/login.component";
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 const appRoutes: Routes = [
     { path: 'cursos',loadChildren: () => import ('src/app/cursos/cursos.module')
@@ -41,7 +42,10 @@ const appRoutes: Routes = [
     //{path: 'naoEncontrado', component: CursoNaoEncontradoComponent},
     
     
-    {path: '', component: HomeComponent, canActivate: [AuthGuard]}
+    {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+    {path: '', redirectTo: '/home', pathMatch: 'full'},
+
+    {path: '**', component: PaginaNaoEncontradaComponent}
 
 ];
 
